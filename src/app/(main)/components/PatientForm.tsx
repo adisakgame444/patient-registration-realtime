@@ -1932,7 +1932,6 @@ import { ErrorMsg } from "@/components/ui/ErrorMsg";
 export default function PatientForm() {
   const {
     register,
-    watch,
     watchedFields, // ✅ ดึงค่าที่ watch มาจาก Hook
     setValue,
     handleSubmit,
@@ -2089,7 +2088,7 @@ export default function PatientForm() {
           {/* ✅ เปลี่ยนเป็นช่องบังคับตามที่คุณสั่ง */}
           <InputField
             icon={Heart}
-            label="ศาสนา *"
+            label="ศาสนา (ถ้ามี)"
             name="religion"
             register={register}
             error={errors.religion}

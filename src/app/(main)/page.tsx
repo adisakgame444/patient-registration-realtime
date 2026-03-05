@@ -47,7 +47,7 @@ export default function PatientPage() {
         <div className="absolute -bottom-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-blue-50/50 blur-[100px]" />
       </div>
 
-      <div className="relative max-w-5xl mx-auto py-8 px-6 sm:py-16">
+      <div className="relative max-w-5xl mx-auto py-6 px-4 sm:py-16">
         {/* Top Navigation */}
         <nav className="flex justify-between items-center mb-12 sm:mb-20">
           <div className="flex items-center gap-2.5">
@@ -121,7 +121,7 @@ export default function PatientPage() {
                 </span>
               </div> */}
 
-              <div className="p-8 sm:p-12">
+              <div className="p-6 sm:p-12">
                 <PatientForm />
               </div>
             </div>

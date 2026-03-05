@@ -116,7 +116,6 @@ export function usePatientForm() {
       phone: "",
       email: "",
       nationality: "",
-      religion: "",
       preferredLanguage: "",
       address: "",
       emergencyContactName: "",
@@ -137,7 +136,6 @@ export function usePatientForm() {
     "nationality",
     "preferredLanguage",
     "address",
-    "religion", // ช่องที่ 10
     "emergencyContactName", // ช่องที่ 11
     "emergencyRelationship", // ช่องที่ 12
   ];
