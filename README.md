@@ -1,4 +1,5 @@
-(ผมใช้ ai เป็นเพื่อนช่วนทำส่วนใหญ่ ผมคิดแล้วก็สั่งให้เขาทำตามที่เราต้องการครับ)
+(ผมใช้aiเป็นเพื่อนช่วยทำส่วนใหญ่ ผมคิดแล้วก็สั่งให้เขาทำตามที่เราต้องการครับ ส่วนนี้ใช้ตัวฟรีทำแล้วก็มาไล่บัค ไล่แก้โค้ดนิดหน่อยๆครับ)
+
 🏥 Patient Registration System (Real-time Sync)
 ระบบลงทะเบียนผู้ป่วยอัจฉริยะ พัฒนาด้วย Next.js 14+ ที่มาพร้อมฟีเจอร์การติดตามความคืบหน้า (Progress Tracking) และการส่งข้อมูลแบบ Real-time ไปยังเจ้าหน้าที่ทันทีผ่าน Pusher เพื่อเพิ่มประสิทธิภาพในการบริการ
 
@@ -10,12 +11,17 @@
 📱 Responsive Design: รองรับการใช้งานทุกอุปกรณ์ ทั้งสมาร์ทโฟน แท็บเล็ต และคอมพิวเตอร์
 
 🛠 เทคโนโลยีที่ใช้ (Tech Stack)
-Framework: Next.js 14 (App Router)
-Form Logic: React Hook Form
-Validation: Zod
-Real-time: Pusher Channels (WebSocket)
-Styling: Tailwind CSS & Lucide React (Icons)
-Utilities: Lodash.debounce (API Throttling)
+Framework: Next.js 16 (App Router)
+Frontend : React 19 React Hook Form — จัดการ state ของฟอร์ม
+Validation: Zod — ตรวจสอบข้อมูล input
+Real-Time Communication: Pusher Channels
+ใช้ WebSocket สำหรับ sync ข้อมูลระหว่าง Patient และ Staff
+Styling:Tailwind CSS Lucide React
+Utilities: Lodash (lodash.debounce)
+ใช้ debounce ลดจำนวน API call ตอนผู้ป่วยพิมพ์
+Language: TypeScript
+
+This project is deployed using Vercel.
 
 📂 โครงสร้างโปรเจกต์ (Project Structure)
 Plaintext

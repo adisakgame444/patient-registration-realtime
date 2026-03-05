@@ -6,8 +6,14 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { data, status } = body;
 
-    // ยิงข้อมูลเข้า Channel 'patient-data' ด้วย Event 'update'
-    // ข้อมูลนี้จะถูกส่งไปให้หน้า Staff ที่กำลัง "รอฟัง" อยู่ทันที
+    // ✅ ตรวจสอบเบื้องต้นว่ามี data ส่งมา (แม้จะเป็นออบเจกต์ที่มีค่าว่างข้างในก็ตาม)
+    if (!data) {
+      return NextResponse.json(
+        { message: "No data provided" },
+        { status: 400 },
+      );
+    }
+
     await pusherServer.trigger("private-patient-data", "update", {
       data,
       status,

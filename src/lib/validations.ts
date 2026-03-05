@@ -1,87 +1,59 @@
-// import { z } from "zod";
-
-// export const patientSchema = z.object({
-//   firstName: z.string().min(1, "First name is required"),
-//   middleName: z.string().optional(),
-//   lastName: z.string().min(1, "Last name is required"),
-//   dob: z.string().min(1, "Date of birth is required"),
-//   gender: z.string().min(1, "Gender is required"),
-//   phone: z.string().regex(/^[0-9]{10}$/, "Phone number must be 10 digits"),
-//   email: z.string().email("Invalid email address"),
-//   address: z.string().min(5, "Address is required"),
-//   preferredLanguage: z.string().min(1, "Preferred language is required"),
-//   nationality: z.string().min(1, "Nationality is required"),
-//   // Emergency Contact (Optional: Name + Relationship)
-//   emergencyContactName: z.string().optional(),
-//   emergencyRelationship: z.string().optional(),
-//   religion: z.string().optional(),
-// });
-
-// export type PatientInput = z.infer<typeof patientSchema>;
-
-// import { z } from "zod";
-
-// export const patientSchema = z.object({
-//   firstName: z.string().min(1, "กรุณาระบุชื่อจริง"),
-//   middleName: z.string().optional(), // ตัวเลือกเสริม (Optional)
-//   lastName: z.string().min(1, "กรุณาระบุนามสกุล"),
-//   dob: z.string().min(1, "กรุณาระบุวัน/เดือน/ปี เกิด"),
-//   gender: z.string().min(1, "กรุณาระบุเพศ"),
-//   phone: z.string().regex(/^[0-9]{10}$/, "เบอร์โทรศัพท์ต้องเป็นตัวเลข 10 หลัก"),
-//   email: z.string().email("รูปแบบอีเมลไม่ถูกต้อง"),
-//   address: z.string().min(5, "กรุณาระบุที่อยู่โดยละเอียด"),
-//   preferredLanguage: z.string().min(1, "กรุณาระบุภาษาที่สะดวก"),
-//   nationality: z.string().min(1, "กรุณาระบุสัญชาติ"),
-
-//   // ✅ ปรับให้เป็นฟิลด์บังคับตามกฎ 12 ข้อ
-//   religion: z.string().optional(),
-//   emergencyContactName: z.string().min(1, "กรุณาระบุชื่อผู้ติดต่อฉุกเฉิน"),
-//   emergencyRelationship: z.string().min(1, "กรุณาระบุความสัมพันธ์"),
-// });
-
-// export type PatientInput = z.infer<typeof patientSchema>;
-
 import { z } from "zod";
 
-// กำหนด Regex สำหรับตรวจสอบตัวอักษร (ไทย/อังกฤษ) และเว้นวรรคเท่านั้น
-const nameRegex = /^[a-zA-Zก-๙\s]+$/;
+// ✅ เปลี่ยนจาก + เป็น * เพื่อให้รองรับค่าว่าง (Zero or more characters)
+const nameRegex = /^[a-zA-Zก-๙\s]*$/;
 
 export const patientSchema = z.object({
   firstName: z
     .string()
+    .regex(nameRegex, "ชื่อต้องเป็นตัวอักษรเท่านั้น")
     .min(1, "กรุณาระบุชื่อจริง")
-    .regex(nameRegex, "ชื่อต้องเป็นตัวอักษรเท่านั้น"),
+    .or(z.literal("")), // ✅ ยอมรับค่าว่างเพื่อให้ซิงค์การลบได้
 
   middleName: z
     .string()
     .regex(nameRegex, "ชื่อกลางต้องเป็นตัวอักษรเท่านั้น")
     .optional()
-    .or(z.literal("")), // รองรับค่าว่างจากฟอร์ม
+    .or(z.literal("")),
 
   lastName: z
     .string()
+    .regex(nameRegex, "นามสกุลต้องเป็นตัวอักษรเท่านั้น")
     .min(1, "กรุณาระบุนามสกุล")
-    .regex(nameRegex, "นามสกุลต้องเป็นตัวอักษรเท่านั้น"),
+    .or(z.literal("")),
 
-  dob: z.string().min(1, "กรุณาระบุวัน/เดือน/ปี เกิด"),
+  dob: z.string().min(1, "กรุณาระบุวัน/เดือน/ปี เกิด").or(z.literal("")),
 
-  gender: z.string().min(1, "กรุณาระบุเพศ"),
+  gender: z.string().min(1, "กรุณาระบุเพศ").or(z.literal("")),
 
-  phone: z.string().regex(/^[0-9]{10}$/, "เบอร์โทรศัพท์ต้องเป็นตัวเลข 10 หลัก"),
+  // ✅ ปรับเบอร์โทรให้รองรับค่าว่างขณะลบ (แต่ถ้ากรอกต้องครบ 10 หลัก)
+  phone: z
+    .string()
+    .regex(/^[0-9]{10}$/, "เบอร์โทรศัพท์ต้องเป็นตัวเลข 10 หลัก")
+    .or(z.literal("")),
 
-  email: z.string().email("รูปแบบอีเมลไม่ถูกต้อง"),
+  email: z.string().email("รูปแบบอีเมลไม่ถูกต้อง").or(z.literal("")),
 
-  address: z.string().min(5, "กรุณาระบุที่อยู่โดยละเอียด"),
+  address: z.string().min(5, "กรุณาระบุที่อยู่โดยละเอียด").or(z.literal("")),
 
-  preferredLanguage: z.string().min(1, "กรุณาระบุภาษาที่สะดวก"),
+  preferredLanguage: z
+    .string()
+    .min(1, "กรุณาระบุภาษาที่สะดวก")
+    .or(z.literal("")),
 
-  nationality: z.string().min(1, "กรุณาระบุสัญชาติ"),
+  nationality: z.string().min(1, "กรุณาระบุสัญชาติ").or(z.literal("")),
 
-  // ✅ ฟิลด์ที่เป็นตัวเลือก (Optional) ตามโจทย์ Assignment
   religion: z.string().optional().or(z.literal("")),
 
-  emergencyContactName: z.string().min(1, "กรุณาระบุชื่อผู้ติดต่อฉุกเฉิน"),
-  emergencyRelationship: z.string().min(1, "กรุณาระบุความสัมพันธ์"),
+  emergencyContactName: z
+    .string()
+    .min(1, "กรุณาระบุชื่อผู้ติดต่อฉุกเฉิน")
+    .or(z.literal("")),
+
+  emergencyRelationship: z
+    .string()
+    .min(1, "กรุณาระบุความสัมพันธ์")
+    .or(z.literal("")),
 });
 
 export type PatientInput = z.infer<typeof patientSchema>;

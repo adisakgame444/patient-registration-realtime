@@ -1,33 +1,3 @@
-// import Link from "next/link";
-// import PatientForm from "@/components/PatientForm";
-// export default function PatientPage() {
-//   return (
-//     <main className="min-h-screen bg-slate-50 py-10 px-4">
-//       <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
-//         <div className="flex justify-end mb-4">
-//           <Link
-//             href="/staff"
-//             className="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors flex items-center gap-1 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-200"
-//           >
-//             เปิดหน้า Staff View →
-//           </Link>
-//         </div>
-//         <header className="mb-8">
-//           <h1 className="text-2xl font-bold text-slate-800">
-//             แบบฟอร์มข้อมูลผู้ป่วย
-//           </h1>
-//           <p className="text-slate-500">
-//             กรุณากรอกข้อมูลให้ครบถ้วนเพื่อความสะดวกในการรับบริการ
-//           </p>
-//         </header>
-
-//         {/* ส่วนที่ต้องมีการโต้ตอบ (Interactive) จะถูกเรียกใช้ตรงนี้ */}
-//         <PatientForm />
-//       </div>
-//     </main>
-//   );
-// }
-
 import { Metadata } from "next";
 import Link from "next/link";
 import PatientForm from "@/app/(main)/components/PatientForm";
