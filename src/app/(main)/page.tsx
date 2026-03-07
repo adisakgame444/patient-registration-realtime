@@ -76,21 +76,6 @@ export default function PatientPage() {
           {/* Form Card - คลีนที่สุด */}
           <div className="lg:col-span-8">
             <div className="bg-white rounded-[2rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.05)] border border-slate-100 overflow-hidden">
-              {/* Stepper Indicator - ทำให้คนใช้ไม่เหนื่อย */}
-              {/* <div className="bg-slate-50/50 px-8 py-4 border-b border-slate-100 flex items-center justify-between">
-                <div className="flex gap-2">
-                  {[1, 2, 3].map((s) => (
-                    <div
-                      key={s}
-                      className={`h-1.5 w-8 rounded-full ${s === 1 ? "bg-indigo-600" : "bg-slate-200"}`}
-                    />
-                  ))}
-                </div>
-                <span className="text-[10px] font-black text-indigo-600 uppercase">
-                  Registration Flow
-                </span>
-              </div> */}
-
               <div className="p-6 sm:p-12">
                 <PatientForm />
               </div>
